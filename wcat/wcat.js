@@ -53,6 +53,7 @@ console.table(contentArr);
 //check if -s is present or not
 let tempArr=[];
 let isSpresent=optionsArr.includes("-s");
+// console.log(isSpresent);
 if(isSpresent){
     for(let i=1;i<contentArr.length;i++){
         if(contentArr[i]=="" && contentArr[i-1] ==""){
