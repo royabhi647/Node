@@ -24,9 +24,11 @@ function handleHtml(html) {
     let totalCases = selecTool(coronaStatsArr[0]).text();
     console.log("Total Cases -> " + totalCases);
 
+
     let totalDeaths = selecTool(coronaStatsArr[1]).text();
     console.log("Total Deaths -> " + totalDeaths);
 
+    
     let totalRecovered = selecTool(coronaStatsArr[2]).text();
     console.log("Total Patients Recovered -> " + totalRecovered);
 }
