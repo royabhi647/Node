@@ -10,5 +10,6 @@ let selecTool = cheerio.load(html);
 let fruitNameArr = selecTool("#fruits");
 console.log(fruitNameArr.text());
 
+
 let fruitName = selecTool(".pear");
 console.log(fruitName.text());

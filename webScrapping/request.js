@@ -11,5 +11,4 @@ function cb(err, res, body) {
     console.log(typeof body);
 }
 
-
 console.log("After");
