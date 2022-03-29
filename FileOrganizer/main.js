@@ -1,32 +1,29 @@
-//Entry point of my command line
-let helpFunc=require("./commands/help");
+// entry point of my command line 
+let helpFunc = require("./commands/help");
+let orgFunc = require("./commands/organize");
+let treeFunc = require("./commands/tree");
 // console.log(helpFunc.ghoda());
-
 let inputArr = process.argv.slice(2);
 // console.log(inputArr);
-
 let command = inputArr[0];
 let path = inputArr[1];
-
-switch(command){    //organize
+switch (command) { //organizee
     case "tree":
         //call tree function
-        console.log("tree function called and executed successfully on path " + path);
+        treeFunc.tree(path);
+        // console.log("tree function called and executed succesfully on path " + path);
         break;
-
     case "organize":
         //call organize function
-        console.log("organize function called and executed successfully on path " + path);
+        orgFunc.organize(path);
+        // console.log("organize function called and executed succesfully on path "+ path);
         break;
-
     case "help":
         //call help function
         helpFunc.help();
-        //help function called and executed successfully
+        // console.log("help function called and executed succesfully");
         break;
-
     default:
-        console.log("command not recognized :/");
+        console.log("command not recognized :/")
         break;
-         
 }
