@@ -127,7 +127,7 @@ function questionSolver(url,idx){
       return waitForTextBoxPromise;
     })
     .then(function(){
-      let codeWillBeTypedPromise=curTab.type("custominput",answer[idx],{
+      let codeWillBeTypedPromise=curTab.type(".custominput",answer[idx],{
         delay:100,
       });
       return codeWillBeTypedPromise;
@@ -138,15 +138,15 @@ function questionSolver(url,idx){
       return controlPressedPromise;
     })
     .then (function(){
-      let aKeyPressedPromise=curTab.keyboard.press("a");
+      let aKeyPressedPromise=curTab.keyboard.press("A",{delay:100});
       return aKeyPressedPromise;
     })
     .then (function(){
-      let xKeyPressedPromise=curTab.keyboard.press("x");
+      let xKeyPressedPromise=curTab.keyboard.press("X",{delay:100});
       return xKeyPressedPromise;
     })
     .then(function(){
-      let ctrlIsReleasedPromise=curTab.keyboard.up("control");
+      let ctrlIsReleasedPromise=curTab.keyboard.up("Control");
       return ctrlIsReleasedPromise;
     })
     .then(function(){
