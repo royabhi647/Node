@@ -9,12 +9,17 @@ let browserOpenPromise=puppeteer.launch({
   headless:false,
   defaultViewport:null,
   args:["--start-maximized"],
+  //chrome://version/
+  // executablePath:
+  //   "//Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 });
 // console.log("browserOpenPromise");
 browserOpenPromise.then(function(browser){
   console.log("browser is open");
   console.log(browserOpenPromise);
   // console.log(browser);
+  //An array of all open pages inside the Browser.
+    //returns an array with all the pages in all browser contexts
 
   let allTabsPromise=browser.pages();
   return allTabsPromise;
@@ -22,6 +27,7 @@ browserOpenPromise.then(function(browser){
 .then(function(allTabsArr){
   curTab=allTabsArr[0];
   console.log("new page");
+  //URL to navigate page to
 
   let visitingLoginPagePromise=curTab.goto("https://www.hackerrank.com/auth/login");
   return visitingLoginPagePromise;
@@ -29,6 +35,7 @@ browserOpenPromise.then(function(browser){
 .then(function(data){
   // console.log(data);
   console.log("Hackerrank login page opened");
+   //selector(where to type), data(what to type)
   let emailWillBeTypedPromise=curTab.type("input[name='username']",email,{delay:100});
   return emailWillBeTypedPromise;
 })
@@ -46,7 +53,8 @@ browserOpenPromise.then(function(browser){
 })
 .then(function(){
   console.log("logged in into hackerrank successfully");
-
+ 
+    //waitAndClick will wait for the selector to load , and then click on the node
   let algorithmTabWillBeOpenedPromise=waitAndClick("div[data-automation='algorithms']");     //
   return algorithmTabWillBeOpenedPromise;                                                    //
 })                                                                                          //
@@ -72,6 +80,8 @@ browserOpenPromise.then(function(browser){
 .then (function(linksArr){                                                                        //-2
   console.log("links to all ques received");                                                      //-2
 
+//question will be solve
+                         //link to the question to be solved, idx of the linksArr
   let questionWillBeSolvedPromise=questionSolver(linksArr[0],0);                                  //-2
   for(let i=1;i<linksArr.length;i++){                                                             //-2
     questionWillBeSolvedPromise=questionWillBeSolvedPromise.then(function(){                      //-2
@@ -123,6 +133,7 @@ function questionSolver(url,idx){
       return waitForCheckBoxAndClickPromise;
     })
     .then(function(){
+        //select the box where code will be typed
       let waitForTextBoxPromise=curTab.waitForSelector(".custominput");
       return waitForTextBoxPromise;
     })
