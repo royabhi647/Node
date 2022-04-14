@@ -67,9 +67,22 @@
 
 
 /* print 1 to 10 on every 2 second */
-for(var i=1;i<=10;i++){
-    function cb(a){
-        console.log(a);
-    };
-    setTimeout(cb, 2000*i, i);
+// for(var i=1;i<=10;i++){
+//     function cb(a){
+//         console.log(a);
+//     };
+//     setTimeout(cb, 2000*i, i);
+// }
+
+
+function a(){
+    let x=100;
+    function y(){
+        return x;
+    }
+    return y;
 }
+
+let fn=a();
+let ans=fn();
+console.log(ans);
