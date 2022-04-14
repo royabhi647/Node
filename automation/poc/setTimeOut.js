@@ -53,12 +53,12 @@
 // }
 
 
-
-for(var i=1;i<=10;i++){
-    function outer(a){
-        setTimeout(function(){
-            console.log(a);
-        }, 2000*a);
-    }
-    outer(i);
-}
+/* print 1 to 10 on every 10 second  by var keyword*/
+// for(var i=1;i<=10;i++){
+//     function outer(a){
+//         setTimeout(function(){
+//             console.log(a);
+//         }, 2000*a);
+//     }
+//     outer(i);
+// }
