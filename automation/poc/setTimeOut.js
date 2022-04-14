@@ -53,10 +53,10 @@
 // }
 
 
-/* print 1 to 10 on every 10 second  by var keyword*/
+/* print 1 to 10 on every 2 second  by var keyword*/
 // for(var i=1;i<=10;i++){
     //hint- closures and scope ->wraping
-    
+
 //     function outer(a){
 //         setTimeout(function(){
 //             console.log(a);
@@ -64,3 +64,12 @@
 //     }
 //     outer(i);
 // }
+
+
+/* print 1 to 10 on every 2 second */
+for(var i=1;i<=10;i++){
+    function cb(a){
+        console.log(a);
+    };
+    setTimeout(cb, 2000*i, i);
+}
