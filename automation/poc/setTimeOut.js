@@ -82,7 +82,6 @@ function a(){
     }
     return y;
 }
-
 let fn=a();
 let ans=fn();
 console.log(ans);
