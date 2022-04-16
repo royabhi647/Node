@@ -76,13 +76,30 @@
 
 
 /* Function Working */
-function a(){
-    let x=100;
-    function y(){
-        return x;
-    }
-    return y;
-}
-let fn=a();
-let ans=fn();
-console.log(ans);
+// function a(){
+//     let x=100;
+//     function y(){
+//         return x;
+//     }
+//     return y;
+// }
+// let fn=a();
+// let ans=fn();
+// console.log(ans);
+
+
+// fetch() api
+
+console.log("before");
+setTimeout(function () {
+  console.log("time over");
+}, 5000);
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then(function (response)
+  {
+    return response.json() // when a promise is returned, it creates a promise and then return it , which is obviously of fuflfilled state 
+  })
+  .then(function (json) {
+    console.log(json)
+  });
+console.log("after");
