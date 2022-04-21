@@ -2,6 +2,7 @@
 
 // 2nd way to overcome callback hell is to use promises 
 
+
 const fs = require("fs");
 
 let f1readPromise = fs.promises.readFile("f1.txt");
