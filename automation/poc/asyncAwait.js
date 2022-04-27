@@ -42,7 +42,7 @@
 //await waits for promise settlement so, it means it takes care of both .then and .catch
 
 async function f() {
-    let promise = new promise(function(resolve,reject){
+    let promise = new Promise(function(resolve,reject){
         setTimeout(function (){
             resolve ("done!")
         },5000);
