@@ -1,35 +1,35 @@
 // // promises
 // // clever person advices
 
-// function fp(){
-//     return new Promise(function (resolve, reject){
-//         resolve("hi");
-//     });
-// }
+function fp(){
+    return new Promise(function (resolve, reject){
+        resolve("hi");
+    });
+}
 
-// let promisifyFunc = fp();
+let promisifyFunc = fp();
 
-// promisifyFunc.then(function (data){
-//     console.log(data);
-// });
+promisifyFunc.then(function (data){
+    console.log(data);  //hi
+});
 
-// promisifyFunc.catch(function(error){
-//     console.log(err);
-// });
+promisifyFunc.catch(function(error){
+    console.log(err);
+});
 
-// // Using async keyword  -> easy language
+// Using async keyword  -> easy language
 
-// async function f() {
-//     return "hello";
-// }
+async function f() {
+    return "hello";
+}
 
-// let asyncf = f();
+let asyncf = f();
 
-// asyncf.then(function (data){
-//     console.log("data");
-// });
+asyncf.then(function (data){
+    console.log(data);  //hello
+});
 
-// // asyncf.then(alert);
+// asyncf.then(alert);
 
 
 
@@ -41,17 +41,17 @@
 //await literally suspends the function execution until the promise settles, and then resumes it with the promise result. That doesn’t cost any CPU resources, because the JavaScript engine can do other jobs in the meantime.
 //await waits for promise settlement so, it means it takes care of both .then and .catch
 
-async function f() {
-    let promise = new Promise(function(resolve,reject){
-        setTimeout(function (){
-            resolve ("done!")
-        },5000);
-    });
+// async function f() {
+//     let promise = new Promise(function(resolve,reject){
+//         setTimeout(function (){
+//             resolve ("done!")
+//         },5000);
+//     });
 
-    let result = await promise; // wait until the promise resolves
-    console.log("hello");
-    alert(result);  //done
-}
+//     let result = await promise; // wait until the promise resolves
+//     console.log("hello");
+//     alert(result);  //done
+// }
 
-f();
-console.log("YOLO");
+// f();
+// console.log("YOLO");
