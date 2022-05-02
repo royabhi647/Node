@@ -22,17 +22,18 @@
       //The Document method querySelector() returns the first Element within 
       //the document that matches the specified selector, 
       //or group of selectors. If no matches are found, null is returned.
-        let btn=document.querySelector("button");
-
-        btn.addEventListener("click",function(){
+       let btn = document.querySelector("button");
+       btn.addEventListener("click",function(){
+           
             //it creates an element in DOM
-            let pElem=document.createElement("p");
-            pElem.innerText="Hello";
-            // <p>Hello</p>
+           let pElem = document.createElement("p");
+           pElem.innerText = "Hello";
+           // <p>Hello</p>
 
-            let body=document.querySelector("body");
-            body.appendChild(pElem);
-        })
+
+           let body = document.querySelector("body");
+           body.appendChild(pElem);
+       })
     </script>
 </body>
 
