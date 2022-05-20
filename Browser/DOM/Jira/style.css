@@ -104,17 +104,19 @@ textarea{
 }
 
 .active{
-  border:5px solid red;
+  border: 5px solid red;
 }
 
+
 .ticket-cont{
-  height:12rem;
+  height: 12rem;
   width:15rem;
   background-color: #f1f2f6;
 }
 
 .ticket-color{
   height:1rem;
+  /* background-color: black; */
 }
 
 .ticket-id{
@@ -125,12 +127,24 @@ textarea{
 .task-area{
   height: calc(100% - 1rem - 2rem);
   font-size: 1.5rem;
-  outline:none;
+  outline: none;
   overflow-wrap: break-word;
 }
 
-
+.ticket-lock{
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  height:2rem;
+  margin-top: -29px;
+  margin-right: 11px;
+}
 
 .main-cont{
   display:flex;
+  gap:2rem;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
 }
+
