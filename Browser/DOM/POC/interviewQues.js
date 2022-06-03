@@ -156,7 +156,22 @@
 
 // foo();
 
+// 4th ques
 
+var length = 1;
+function square() {
+  let cb = function () {
+    console.log(this.length * this.length);
+  };
+  setTimeout(cb, 2000);
+}
+
+var obj = {
+  length: 3,
+  square,
+};
+
+obj.square();
 
 
 
