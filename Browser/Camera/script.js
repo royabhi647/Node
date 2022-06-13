@@ -5,8 +5,10 @@ let transparentColor = "transparent";
 let recordBtnCont = document.querySelector(".record-btn-cont");
 let recordBtn = document.querySelector(".record-btn");
 
+
+
 let recorder;
-let chunks=[];
+let chunks = [];
 let constraints = {
     video: true,
     audio: true
@@ -18,29 +20,43 @@ navigator.mediaDevices.getUserMedia(constraints)
 .then((stream) => {
     video.srcObject = stream;
 
-    
-    recorder=new MediaRecorder(stream);
-    recorder.addEventListener("start",(e) =>{
-        // Memory
+
+    recorder = new MediaRecorder(stream);
+    recorder.addEventListener("start", (e) => {
+        // memory
         chunks = [];
+        console.log('rec started');
     })
 
-    recorder.addEventListener("stop", () =>{
+    recorder.addEventListener("dataavailable", (e) => {
+        chunks.push(e.data);
+        console.log('recording pushed in chunks');
+    });
+
+    recorder.addEventListener("stop", () => {
         // convert video
+        let blob = new Blob(chunks, { type: 'video/mp4 '});
+        console.log('rec stopped');
+        
+        // Download Video on Desktop
+        let videoURL = URL.createObjectURL(blob);
+        console.log(videoURL);
 
-        // let blob = new Blob(chunks,{type: 'video/mp4' });
+        let a = document.createElement('a');
+        a.href = videoURL;
+        a.download = "myVideo.mp4";
 
-        // download video on desktop
+        a.click();
+
         // store in database
-
     })
-
 
 
 });
 
 // click photo
 captureBtnCont.addEventListener("click", () => {
+    captureBtn.classList.add("scale-capture");
     let canvas = document.createElement("canvas");
     let tool = canvas.getContext("2d");
     canvas.width = video.videoWidth;
@@ -50,18 +66,24 @@ captureBtnCont.addEventListener("click", () => {
 
     // applying filters on photo
     tool.fillStyle = transparentColor;
-    tool.fillRect(0, 0, canvas.width,canvas.height);
+    tool.fillRect(0, 0, canvas.width, canvas.height);
 
     let imageURL = canvas.toDataURL();
     // let img = document.createElement("img");
     // img.src = imageURL;
     // document.body.append(img);
+    
+    setTimeout(() => {
+        captureBtn.classList.remove("scale-capture");
+    }, 510);
+
 });
 
-recordBtnCont.addEventListener("click", () =>{
-
+// recording
+recordBtnCont.addEventListener("click", () => {
     shouldRecord = !shouldRecord;
-    if(shouldRecord) {
+    if(shouldRecord){
+        recordBtn.classList.add("scale-record");
         // recording start
         recorder.start();
         // start timer
@@ -69,9 +91,63 @@ recordBtnCont.addEventListener("click", () =>{
     }
 
     else{
-        // stop the recording
+        recordBtn.classList.remove("scale-record");
+        // recording stop
         recorder.stop();
-        // stop the timer
+        // stop timer
         stopTimer();
     }
+
 });
+
+let timer = document.querySelector('.timer');
+
+let counter = 0;
+let timerID;
+function startTimer() {
+    timer.style.display = 'block';
+
+    function displayTimer(){
+        let totalSeconds = counter;
+
+        let hours = Number.parseInt(totalSeconds / 3600);
+        totalSeconds = totalSeconds % 3600;
+
+        let minutes = Number.parseInt(totalSeconds / 60);
+        totalSeconds = totalSeconds % 60;
+
+        let seconds = totalSeconds;
+
+        hours = (hours < 10) ? `0 ${hours}` : hours;
+        minutes = (minutes < 10) ? `0 ${minutes}` : minutes;
+        seconds = (seconds < 10) ? `0 ${seconds}` : seconds;
+        timer.innerText = `${hours}:${minutes}:${seconds}`;
+
+
+        counter++;
+
+
+    }
+
+    timerID = setInterval(displayTimer, 1000);
+    counter = 0;
+
+
+}
+
+function stopTimer() {
+    clearInterval(timerID);
+    timer.innerText = "00:00:00";
+    timer.style.display = 'none';
+}
+
+// Filter add 
+let filterLayer = document.querySelector(".filter-layer");
+let allFilters = document.querySelectorAll(".filter");
+
+allFilters.forEach((filterElem) => {
+    filterElem.addEventListener('click', () => {
+        transparentColor = getComputedStyle(filterElem).getPropertyValue('background-color');
+        filterLayer.style.backgroundColor = transparentColor;
+    })
+})
