@@ -57,7 +57,7 @@
 
  .timer-cont{
      position: absolute;
-    bottom: 4rem;
+    bottom: 10rem;
     color: white;
     /* font-size: 1rem; */
     left: 3rem;
@@ -154,4 +154,8 @@
      bottom: 10rem;
     right: 6rem;
     z-index: 2;
+
+ }
+ .gallery:hover{
+     cursor: pointer;
  }
