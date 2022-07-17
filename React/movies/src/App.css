@@ -98,6 +98,14 @@ page-ination{
   justify-content: center;
 }
 
+.favourites-list{
+  padding:3rem;
+}
+
+.favourites-table{
+  padding:3rem;
+}
+
 @media screen and (max-width:400px) {
   .banner-img{
     height:30vh;
