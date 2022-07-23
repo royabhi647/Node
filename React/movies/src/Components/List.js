@@ -9,10 +9,10 @@ export default class List extends Component {
     console.log("constructor is called");
     this.state = {
       hover: "",
-      parr: [1],
-
+      parr: [1], //ab tak main konse page par hu , or what page result am i showing ,
       currPage: 1,
       movies: [],
+      favMov: [], //this will store the id of the movies added to favourites
     };
   }
 
@@ -29,6 +29,8 @@ export default class List extends Component {
   };
 
   changeMovies = async () => {
+    // console.log(this.state.currPage);
+    // console.log("changeMovies called");
     console.log(this.state.currPage);
     console.log("changeMovies called");
     let ans = await axios.get(
@@ -54,7 +56,7 @@ export default class List extends Component {
     );
   };
 
-  handlePrevious = () => {
+  handlePrev = () => {
     if (this.state.currPage != 1) {
       this.setState(
         {
@@ -74,12 +76,31 @@ export default class List extends Component {
     );
   };
 
+  handleFavourites = (movieObj) => {
+    //jurassic park
+    let localStorageMovies = JSON.parse(localStorage.getItem("movies")) || [];
+
+    if (this.state.favMov.includes(movieObj.id)) {
+      localStorageMovies = localStorageMovies.filter(
+        (movie) => movie.id != movieObj.id
+      );
+    } else localStorageMovies.push(movieObj);
+    console.log(localStorageMovies);
+
+    localStorage.setItem("movies", JSON.stringify(localStorageMovies));
+
+    let tempData = localStorageMovies.map((movieObj) => movieObj.id);
+    this.setState({
+      favMov: [...tempData],
+    });
+  };
+
   async componentDidMount() {
-    console.log("componentDidMount is called");
+    // console.log("componentDidMount is called");
     let ans = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=c7ee8fb81b5b5a537ef10f0f68bcd0c2&language=en-US&page=${this.state.currPage}`
     );
-    console.log(ans.data);
+    // console.log(ans.data);
 
     this.setState({
       movies: [...ans.data.results],
@@ -87,9 +108,8 @@ export default class List extends Component {
   }
 
   render() {
-    console.log("render is called");
-
-    // let movie = movies.results;
+    // console.log("render is called");
+    // let movie = movies.results; // fetch
     return (
       <>
         {this.state.movies.length == 0 ? (
@@ -121,8 +141,13 @@ export default class List extends Component {
                   {/* <p className="card-text movie-text">{movieObj.overview}</p> */}
                   <div className="button-wrapper">
                     {this.state.hover == movieObj.id && (
-                      <a href="#" class="btn btn-danger movie-button">
-                        Add to Favourites
+                      <a
+                        class="btn btn-danger movie-button"
+                        onClick={() => this.handleFavourites(movieObj)}
+                      >
+                        {this.state.favMov.includes(movieObj.id)
+                          ? "Remove from Favourites"
+                          : "Add to Favourites"}
                       </a>
                     )}
                   </div>
