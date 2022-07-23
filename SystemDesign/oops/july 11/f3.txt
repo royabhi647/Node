@@ -1,0 +1,2 @@
+Constructor<?> hashMapConstructor = Class.forName("java.util.HashMap").getConstructor(null);
+Map<String,String> myMap = hashMapConstructor.newInstance(null);
