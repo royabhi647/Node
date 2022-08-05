@@ -42,7 +42,7 @@ function index() {
 
         <Button 
           color="secondary" 
-          variant="contained" 
+          variant="outlined" 
           component="label"
           fullWidth 
           size="small" 
