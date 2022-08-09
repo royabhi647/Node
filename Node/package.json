@@ -1,0 +1,27 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "main": "fs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royabhi647/Node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/royabhi647/Node/issues"
+  },
+  "homepage": "https://github.com/royabhi647/Node#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.2.4",
+    "promise": "^8.1.0",
+    "puppeteer": "^13.5.2",
+    "request": "^2.88.2"
+  },
+  "description": ""
+}
