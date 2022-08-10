@@ -46,14 +46,40 @@
     height: 100%;
     width: 20rem;
     margin-bottom: 0.6rem;
+    margin-top: 1rem;
 }
 
 .post-container>video{
     height: 100%;
     width: 20rem;
     object-fit: contain;
-    background-color: lightpink;
+    /* background-color: lightpink; */
     border-radius: 15px;
+    position: relative;
+}
+
+.video-info{
+    position: absolute;
+    width: 20rem;
+    display: flex;
+    justify-content: space-around;
+    bottom: 65px;
+}
+
+.avtar-container{
+    display: flex;
+    justify-content: flex-start;
+    width: 70%;
+}
+
+.avtar-container>p{
+    margin-left: 0.2rem;
+}
+
+.post-like{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width:500px) {
