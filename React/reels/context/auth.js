@@ -1,9 +1,9 @@
 import React from 'react'
 
-function AuthWrapper() {
+function AuthWrapper({children}) {
     console.log("Hello in Auth wrapper");
   return (
-    <div>Hello</div>
+    <div>{ children}</div>
   )
 }
 

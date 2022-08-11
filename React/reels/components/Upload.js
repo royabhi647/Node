@@ -1,8 +1,7 @@
 import React from 'react'
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import { Button, IconButton, LinearProgress }  from "@mui/material";
 import MovieIcon from '@mui/icons-material/Movie';
-import LinearProgress from '@mui/material/LinearProgress';
+
 
 
 function Upload() {
@@ -12,7 +11,6 @@ function Upload() {
         color="secondary" 
         variant="outlined" 
         component="label"
-        fullWidth 
         size="large" 
         startIcon={<MovieIcon />}
     > 
@@ -20,10 +18,11 @@ function Upload() {
         <input hidden accept="*" multiple type="file" />
     </Button>
     <LinearProgress
-    color='secondary'
+        color='secondary'
         variant='determinate'
         value={"60"} 
-        sx={{mt:'0.2rem'}} />
+        sx={{mt:'0.2rem'}}
+    />
   </div>
   )
 }
