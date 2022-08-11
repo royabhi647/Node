@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Image from "next/image";
 import logo from "../../assets/Instagram.jpeg";
@@ -10,15 +10,23 @@ import bg3 from "../../assets/bg3.jpg";
 import bg4 from "../../assets/bg4.jpg";
 import bg5 from "../../assets/bg5.jpg";
 import {AuthContext} from "../../context/auth";
-import { async } from "@firebase/util";
+import { useRouter } from "next/router";
 
 function index() {
   const [email,setEmail] = React.useState('');
   const [password,setPassword] = React.useState('');
   const [error,setError] = React.useState('');
   const [loading,setLoading] = React.useState(false);
+  const router = useRouter();
 
-  const {login} = useContext(AuthContext);
+  const {login,user} = useContext(AuthContext);
+  useEffect(() => {
+    if (user) {
+      //route to feeds page
+      router.push("/");
+
+    }
+  },[user])
 
   let handleClick = async() => {
     try{
@@ -105,6 +113,7 @@ function index() {
           component="label"
           fullWidth 
           onClick={handleClick}
+          disabled={loading}
          >
           log in
         </Button>
