@@ -1,0 +1,25 @@
+.navbar{
+    display: flex;
+    justify-content: centre;
+    align-items: centre;
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-icons{
+    margin:0.5rem;
+    background-color: black;
+}
+
+.nav-icons-container{
+    display: flex;
+    justify-content: centre;
+    align-items: centre;
+}
+
+@media only screen and (max-width:500px){
+    .nav-icons{
+        display:none;
+    }
+}
