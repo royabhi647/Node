@@ -18,7 +18,6 @@ import bg4 from "../../assets/bg4.jpg";
 import { AuthContext } from "../../context/auth";
 import { async } from "@firebase/util";
 import { useRouter } from "next/router";
-import Link from 'next/link';
 
 function index() {
 
@@ -28,15 +27,16 @@ function index() {
   const [error, setError] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  const { login, user } = useContext(AuthContext);
+  const { forgot, user } = useContext(AuthContext);
 
   const handleClick = async() => {
     // console.log(email+" "+password);
     try {
       setLoading(true)
       setError('')
-      await login(email,password)
-      console.log("logged in")
+      await forgot(email)
+      console.log("Email Sent")
+      router.push('/login')
     } catch (err) {
       console.log("error")
       setError(err.message)
@@ -89,7 +89,7 @@ function index() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <TextField
+          {/* <TextField
             size="small"
             margin="dense"
             id="outlined-basic"
@@ -99,7 +99,7 @@ function index() {
             variant="outlined"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+          /> */}
 
           {error != "" && <div style={{ color: "red" }}>{error}</div>}
 
@@ -109,16 +109,16 @@ function index() {
             style={{ marginTop: "1rem" }}
             onClick={handleClick} disabled={loading}
           >
-            LOGIN
+            Send Email
           </Button>
 
-          <div style={{ color: "blue", marginTop: "0.5rem" }}>
+          {/* <div style={{ color: "blue", marginTop: "0.5rem" }}>
             Forgot Password ?
-          </div>
+          </div> */}
         </div>
 
         <div className="bottom-card">
-          Don't Have an Account? <Link href="/signup"><span style={{ color: "blue" }}>Sign Up</span></Link>
+          Don't Have an Account? <span style={{ color: "blue" }}>Sign Up</span>
         </div>
       </div>
     </div>
