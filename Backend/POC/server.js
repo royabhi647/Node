@@ -3,7 +3,9 @@
 // Http module
 
 const http = require('http');
+
 const fs = require("fs");
+
 const server = http.createServer((req,res) => {
     console.log("request from browser to server");
     // console.log(req.method);
