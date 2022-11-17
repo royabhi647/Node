@@ -33,18 +33,6 @@ userRouter
     .route("/:name")
     .get(getUserById);
 
-//with query
-// app.get('/user', )
-
-// app.post('/user', );
-
-// app.patch('/user', );
-
-// app.delete('/user', )
-
-//params
-// app.get('/user/:name', );
-
 function getUser(req, res){
     console.log(req.query);
     let { name, age } = req.query;
