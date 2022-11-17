@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 // console.log(__dirname);
 
+
 app.get("/",function(req,res) {
     res.send("<h1>Hello world,123</h1>")
 })
