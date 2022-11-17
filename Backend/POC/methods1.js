@@ -29,6 +29,7 @@ app.get('/user',(req,res) => {
     res.send(filteredData);
 })
 
+
 // params
 app.get('/user/:name',(req,res) => {
     console.log(req.params.name);
