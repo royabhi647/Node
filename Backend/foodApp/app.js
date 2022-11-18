@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const mongoose  = require('mongoose');
+const db_link = require('./secrets');
 app.use(express.json());
 
 let user = [
@@ -27,7 +29,7 @@ app.use("/auth",authRouter);
 
 useRouter
     .route("/")
-    .get(getUser)
+    .get(getUsers)
     .post(postUser)
     .patch(updateUser)
     .delete(deleteUser)
@@ -38,10 +40,14 @@ useRouter.route("/:name").get(getUserById);
 authRouter.route("/signup").get(getSignup).post(postSignup);
 
 
-function getUser(req,res) {
+async function getUsers(req,res) {
     console.log(req.query);
     let{name,age} = req.query;
-    res.send(user);
+
+    // get all users from db
+    let allUsers = await userModel.findOne({name:"Abhishek"})
+
+    res.json({msg:"users retrieved",allUsers});
 }
 
 function postUser(req,res) {
@@ -81,16 +87,68 @@ function getSignup(req,res) {
     res.sendFile("/public/index.html", {root : __dirname});
 }
 
-function postSignup(req,res) {
-    let {email, name, password} = req.body;
-    console.log(req.body);
-    res.json({
-        msg : "user signed up",
-        email,
-        name,
-        password,
-    })
+async function postSignup(req,res) {
+    // let {email, name, password} = req.body;
+    try{
+        let data = req.body;
+        let user = await userModel.create(data);
+        console.log(data);
+        res.json({
+            msg : "user signed up",
+        user
+        })
+    }catch(err){
+        res.json({
+            err:err.message
+        })
+    }
 }
 
 
 app.listen(5000);
+
+
+mongoose.connect(db_link)
+    .then(function(db){
+        console.log("db connected");
+        // console.log(db);
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+
+const userSchema = mongoose.Schema({
+   name: {
+    type: String,
+    required: true,
+   },
+   email: {
+    type: String,
+    required: true,
+    unique: true,
+   },
+   password: {
+    type: String,
+    required: true,
+    minLength: 7,
+   },
+   confirmPassword: {
+    type: String,
+    required: true,
+    minLength: 7,
+   },
+})
+
+// models
+const userModel = mongoose.model('userModel',userSchema);
+
+// (async function createUser(){
+//     let user = {
+//         name: "Krishna",
+//         email: "krishna@gmail.com",
+//         password: "123456789",
+//         confirmPassword: "123456789"
+//     };
+//     let data = await userModel.create(user);
+//     console.log(data);
+// })();
