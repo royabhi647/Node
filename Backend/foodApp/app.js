@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
-const mongoose  = require('mongoose');
-const db_link = require('./secrets');
+const userModel = require('./models/userModel');
 app.use(express.json());
 
 let user = [
@@ -109,41 +108,6 @@ async function postSignup(req,res) {
 
 
 app.listen(5000);
-
-
-mongoose.connect(db_link)
-    .then(function(db){
-        console.log("db connected");
-        // console.log(db);
-    })
-    .catch(function(err){
-        console.log(err);
-    })
-
-const userSchema = mongoose.Schema({
-   name: {
-    type: String,
-    required: true,
-   },
-   email: {
-    type: String,
-    required: true,
-    unique: true,
-   },
-   password: {
-    type: String,
-    required: true,
-    minLength: 7,
-   },
-   confirmPassword: {
-    type: String,
-    required: true,
-    minLength: 7,
-   },
-})
-
-// models
-const userModel = mongoose.model('userModel',userSchema);
 
 // (async function createUser(){
 //     let user = {
