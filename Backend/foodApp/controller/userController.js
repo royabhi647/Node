@@ -1,63 +1,85 @@
-const userModel = require('../models/userModel');
+const userModel = require("../models/userModel");
 
+module.exports.getUser = async function (req, res) {
+  try {
+    let id = req.params.id;
+    let User = await userModel.findById(id);
 
-module.exports.getUsers=async function (req, res) {
-    console.log(req.query);
-    let { name, age } = req.query;
-  
-    // get all users from db
-    let allUsers = await userModel.find();
-  
-    res.json({ msg: "users retrieved", allUsers });
-  }
-  
-  module.exports.postUser=function (req, res) {
-    console.log(req.body.name);
-    //then i can put this in db
-    user.push(req.body);
+    res.json({ msg: "users retrieved", User });
+  } catch (err) {
     res.json({
-      message: "Data received successfully",
-      user: req.body,
+      msg: err.message,
     });
   }
-  
-  module.exports.updateUser=async function (req, res) {
-    console.log(req.body);
-    let dataToBeupdated = req.body;
-    // for(key in dataToBeupdated){
-    //     user[key] = dataToBeupdated[key];
-    // }
-    let doc = await userModel.findOneAndUpdate(
-      { email: "kumar@gmail.com" },
-      dataToBeupdated
-    );
+};
+
+// module.exports.postUser = function (req, res) {
+//   console.log(req.body.name);
+//   //then i can put this in db
+//   user.push(req.body);
+//   res.json({
+//     message: "Data received successfully",
+//     user: req.body,
+//   });
+// };
+
+module.exports.updateUser = async function (req, res) {
+  console.log(req.body);
+  let id = req.params.id;
+  let user = await userModel.findById(id);
+  let dataToBeupdated = req.body;
+  // for(key in dataToBeupdated){
+  //     user[key] = dataToBeupdated[key];
+  // }
+  try {
+    if (user) {
+      const keys = [];
+      for (let key in dataToBeupdated) {
+        keys.push(key);
+      }
+
+      for (let i = 0; i < keys.length; i++) {
+        user[keys[i]] = dataToBeupdated[keys[i]];
+      }
+
+      const updatedData = await user.save();
+      res.json({
+        message: "Data updated successfully",
+      });
+    } else {
+      res.json({
+        message: "user not found",
+      });
+    }
+  } catch (err) {
     res.json({
-      message: "Data updated successfully",
+      message: err.message,
     });
   }
-  
-  module.exports.deleteUser=async function (req, res) {
-    // user = {};
-    let doc = await userModel.deleteOne({ email: "krishna@gmail.com" });
-    console.log(doc);
+};
+
+module.exports.deleteUser = async function (req, res) {
+  try {
+    let id = req.params.id;
+    let user = await userModel.findByIdAndDelete(id);
     res.json({
       msg: "User has been deleted",
+      user,
+    });
+  } catch (err) {
+    res.json({
+      msg: err.message,
     });
   }
-  
-  module.exports.getUserById=function (req, res) {
-    console.log(req.params.name);
-    res.json({ msg: "user id is ", obj: req.params });
+};
+
+module.exports.getAllUser = async function (req, res) {
+  try {
+    let allUsers = await userModel.find();
+    res.json({ msg: "user id is ", allUsers });
+  } catch (err) {
+    res.json({
+      msg: err.message,
+    });
   }
-  
-  module.exports.setCookies=function (req, res) {
-    res.cookie("isLoggedIn", false, { maxAge: 10000, secure: true });
-    res.cookie("password", 12345678, { secure: true });
-    res.send("cookie has been set");
-  }
-  
-  module.exports.getCookies=function (req, res) {
-    let cookies = req.cookies.password;
-    console.log(cookies);
-    res.send("cookies received");
-  }
+};
