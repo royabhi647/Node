@@ -2,7 +2,7 @@ const express = require("express");
 const userRouter = express.Router();
 const {getUser, postUser, updateUser, deleteUser, allUser} = require('../controller/userController');
 const {isAuthorised,protectRoute} = require('../helper');
-const {signup, login} = require('../controller/authController');
+const {signup, login, forgetpassword, resetpassword, logout} = require('../controller/authController');
 
 
 // user options
@@ -26,6 +26,10 @@ userRouter
 userRouter
   .route("/resetpassword/:token")
   .post(resetpassword);
+
+userRouter
+.route("/logout")
+.get(logout);
 
 // profile page
 userRouter.use(protectRoute)

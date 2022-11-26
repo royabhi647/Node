@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const {db_link} = require("../secrets");
 const emailValidator = require("email-validator");
 const bcrypt = require("bcrypt");
-import { v4 as uuidv4 } from "uuid";
+const uuidv4 =  require("uuid");
 
 
 mongoose
