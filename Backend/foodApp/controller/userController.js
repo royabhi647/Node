@@ -3,9 +3,8 @@ const userModel = require("../models/userModel");
 module.exports.getUser = async function (req, res) {
   try {
     let id = req.id;
-    let User = await userModel.findById(id);
-
-    res.json({ msg: "users retrieved", User });
+    let user = await userModel.findById(id);
+    res.json({ msg: "users retrieved", user });
   } catch (err) {
     res.json({
       msg: err.message,
@@ -73,7 +72,7 @@ module.exports.deleteUser = async function (req, res) {
   }
 };
 
-module.exports.getAllUser = async function (req, res) {
+module.exports.allUser = async function (req, res) {
   try {
     let allUsers = await userModel.find();
     res.json({ msg: "user id is ", allUsers });
