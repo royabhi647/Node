@@ -8,7 +8,7 @@ const uuidv4 =  require("uuid");
 mongoose
   .connect(db_link)
   .then(function (db) {
-    console.log("db connected");
+    console.log("user db connected");
     // console.log(db);
   })
   .catch(function (err) {
