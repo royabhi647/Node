@@ -6,14 +6,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-const useRouter = require("./Routers/userRouter");
-const authRouter = require("./Routers/authRouter");
+const userRouter = require("./Routers/userRouter");
+const planRouter = require("./Routers/planRouter");
 
 
-app.use("/user",useRouter);
-app.use("/auth",authRouter);
+app.use("/user",userRouter);
+app.use("/plan",planRouter);
 
-const planModel = require('./models/planModel');
 
 
 app.listen(5000);
