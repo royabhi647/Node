@@ -65,7 +65,7 @@ module.exports.getPlanReview = async function (req, res) {
 module.exports.createReview = async function (req, res) {
   try {
     const planId = req.params.plan;
-    const plan = await planModel.findById(planId);
+    const plan = await reviewModel.findById(planId);
     const review = req.body;
     const postReview = await reviewModel.create(review);
     // plan.ratingsAverage =
@@ -115,13 +115,12 @@ module.exports.updateReview = async function(req, res) {
 
 module.exports.deleteReview = async function(req, res){
   try{
-    let planId = req.body.id;
+    let planId = req.params.plan;
     let id = req.body.id;
     // change average rating of plan
     let review = await reviewModel.findByIdAndDelete(id);
-    req.json({
+    res.json({
       message:"review deleted",
-      review
     })
   }catch(err){
     return res.json({
