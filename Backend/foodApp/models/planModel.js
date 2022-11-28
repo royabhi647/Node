@@ -37,7 +37,13 @@ const planSchema = mongoose.Schema({
   },
   ratingsAverage: {
     type: Number,
+    default: 0
   },
+  // nor: {
+  //   // number of rating
+  //   type: Number,
+  //   default: 0
+  // }
 });
 
 // models

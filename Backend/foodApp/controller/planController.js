@@ -97,6 +97,7 @@ module.exports.deletePlan = async function(req, res) {
 
 module.exports.top3Plans = async function (req,res) {
   try{
+    // sorting on the basis of descending order (3 items)
     const plans = await planModel.find().sort({ratingsAverage: -1}).limit(3);
     return res.json({
       msg: "top3 plans",
