@@ -1,13 +1,16 @@
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const { JWT_KEY } = require("../secrets");
-const { use } = require("../Routers/userRouter");
+
+const { sendMail } = require("../utility/nodemailer");
 
 module.exports.signup = async function (req, res) {
   try {
     let data = req.body; // name,email,password
     let user = await userModel.create(data);
     if (user) {
+      // send  mail
+      await sendMail("signup", user);
       res.json({
         msg: "user signed up",
         user,
@@ -69,6 +72,7 @@ module.exports.forgetpassword = async function (req, res) {
       )}/resetpassword/${resetToken}`;
       //send email to user
       //nodemailer
+      await sendMail("forgetpassword", { email, resetPasswordLink });
     } else {
       res.json({
         msg: "user not found",
@@ -105,9 +109,9 @@ module.exports.resetpassword = async function (req, res) {
   }
 };
 
-module.exports.logout = function(req,res) {
-  res.cookie('login',' ',{maxAge: 1 });
+module.exports.logout = function (req, res) {
+  res.cookie("login", " ", { maxAge: 1 });
   res.json({
-    msg:'user logged out successfully'
-  })
-}
+    msg: "user logged out successfully",
+  });
+};
