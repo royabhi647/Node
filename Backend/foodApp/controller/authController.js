@@ -73,6 +73,11 @@ module.exports.forgetpassword = async function (req, res) {
       //send email to user
       //nodemailer
       await sendMail("forgetpassword", { email, resetPasswordLink });
+
+      res.json({
+        msg:"email sent successfully"
+      })
+      
     } else {
       res.json({
         msg: "user not found",

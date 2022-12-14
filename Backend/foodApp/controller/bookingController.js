@@ -10,8 +10,8 @@ module.exports.createSession = async function (req, res) {
       line_items: [
         {
           // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          // name: plan.name,
-          name: "HealthyFood101",
+          name: plan.name,
+          // name: "HealthyFood101",
           // description: plan.description,
           amount: "1234",
           currency: "inr",

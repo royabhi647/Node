@@ -1,3 +1,4 @@
+const planModel = require("../models/planModel");
 const reviewModel = require("../models/reviewModel");
 
 module.exports.getAllReviews = async function (req, res) {
