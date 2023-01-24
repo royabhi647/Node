@@ -67,6 +67,7 @@ function Upload({ userData }) {
 
           let obj = {
             likes: [],
+            comments: [],
             postId: uid,
             postUrl: downloadURL,
             profileName: userData.name,
@@ -77,6 +78,7 @@ function Upload({ userData }) {
           console.log(obj)
           await setDoc(doc(db,"posts",uid),obj);
           console.log("post added in post collection")
+          // update in users, posts ka arr
           await updateDoc(doc(db,"users",userData.uid),{
             posts: arrayUnion(uid)
           })
