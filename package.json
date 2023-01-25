@@ -1,24 +1,15 @@
 {
-  "name": "node",
-  "version": "1.0.0",
-  "description": "",
-  "main": "fs.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/royabhi647/Node.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/royabhi647/Node/issues"
-  },
-  "homepage": "https://github.com/royabhi647/Node#readme",
   "dependencies": {
-    "puppeteer": "^16.1.0",
-    "request": "^2.88.2"
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "email-validator": "^2.0.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.7.2",
+    "nodemailer": "^6.8.0",
+    "stripe": "^11.1.0",
+    "uuid": "^9.0.0"
   }
 }

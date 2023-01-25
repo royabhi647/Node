@@ -1,3 +1,6 @@
+//  prototype in javaScript
+
+
 /*const obj = new Object({
     name: "Ajay"
 })
