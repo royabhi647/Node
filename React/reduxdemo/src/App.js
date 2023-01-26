@@ -10,11 +10,7 @@ import User from './Components/User';
 function App() {
   return (
     <div className='App'>
-      <Provider store={store}>
-        <Bat />
-        <Ball />
-        <User />
-      </Provider>
+      
     </div>
   );
 }
