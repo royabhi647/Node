@@ -10,7 +10,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
-function index() {
+function Index() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -166,4 +166,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
