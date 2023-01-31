@@ -20,7 +20,7 @@ function myDebounce(call,d){
     let timer;
     return function(...args){
         if(timer) clearTimeout(timer);
-        setTimeout(()=>{
+        timer = setTimeout(()=>{
             call();
         },d)
     }
