@@ -16,9 +16,14 @@ app.get('/profile',(_,res)=>{
     let user = {
         name:'Abhishek Kumar',
         email:'abhishek@test.com',
-        city:"Arrah"
+        city:"Arrah",
+        skills:['php','java','c++','node','javascript']
     }
     res.render('profile',{user});
+})
+
+app.get('/login',(_,res)=>{
+    res.render('login');
 })
 
 app.get('/about',(_,res)=>{
