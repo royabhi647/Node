@@ -2,6 +2,7 @@
 
 const express = require('express');
 const dbConnect = require('../mongodb');
+const mongodb = require('mongodb') // object for delete
 const app = express();
 
 app.use(express.json());
@@ -32,5 +33,16 @@ app.put('/', async(req, res)=>{
     )
     res.send({result:"updated"})
 })
+
+
+
+// Delete api | Delete api from MongoDB
+app.delete('/:id', async (req,res)=>{
+    console.log(req.params.id);
+    const data = await dbConnect();
+    const result = await data.deleteOne({_id: new mongodb.ObjectId(req.params.id)})
+    res.send(result)
+})
+
 
 app.listen(5000)
